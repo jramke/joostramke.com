@@ -1,0 +1,7 @@
+/* Workaround to use tailwind theme props in scss */
+:root {
+    --container-padding: theme(container.padding);
+    --spacing-reading: theme(spacing.reading);
+    --spacing-breakout: theme(spacing.breakout);
+    --spacing-breakout-lg: theme(spacing.breakout-lg);
+}

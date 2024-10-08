@@ -1,0 +1,98 @@
+// .nav-toggle {
+//     &[aria-expanded="true"] {
+//         .nav-toggle__inner {
+//             width: 22px;
+//             height: 22px;
+//             &:before {
+//                 transform: translateZ(0px) rotate(45deg);
+//                 top: 50%;
+//             }
+//             &:after {
+//                 transform: translateZ(0px) rotate(-45deg);
+//                 top: 50%;
+//             }
+//         }
+//     }
+//     &__inner {
+//         width: 22px;
+//         height: 12px;
+//         position: relative;
+//         display: flex;
+//         &:before,&:after {
+//             content: "";
+//             position: absolute;
+//             width: 100%;
+//             height: 1px;
+//             right: 0;
+//             background-color: hsl(var(--foreground));
+//             border-radius: 1px;
+//             transition: inherit;
+//             transform: translateZ(0px);
+//         }
+//         &:before {
+//             top: 0
+//         }
+        
+//         &:after {
+//             top: 100%;
+//         }
+//     }
+// }
+
+.offcanvas {
+    --rounded-div-width-open: 120px;
+    --rounded-div-width-open-static: 120px;
+    --rounded-div-width-close: 80px;
+    --rounded-div-width-close-static: 80px;
+    --xPercent: 100;
+
+    &__inner {
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100px;
+            height: 100%;
+            background-color: hsl(var(--background));
+            z-index: -1;
+        }
+    }
+
+    &__rounded-div-open {
+        -webkit-clip-path: url('#offcanvas__mask-open');
+        clip-path: url('#offcanvas__mask-open');
+        position: absolute;
+        height: 100%;
+        left: calc((-1 * var(--rounded-div-width-open)) - var(--rounded-div-width-close) + 1px);
+        top: 0;
+        width: var(--rounded-div-width-open);
+        background-color: hsl(var(--background));
+        // background-color: red;
+    }
+    
+    &__rounded-div-close {
+        -webkit-clip-path: url('#offcanvas__mask-close');
+        clip-path: url('#offcanvas__mask-close');
+        position: absolute;
+        height: 100%;
+        left: calc(-1 * var(--rounded-div-width-close) + 1px);
+        top: 0;
+        width: var(--rounded-div-width-close);
+        background-color: hsl(var(--background));
+        // background-color: green;
+    }
+
+}
+
+// @media screen and (max-height: 800px) {
+//     .offcanvas {
+//         --bs-offcanvas-padding: Min(var(--container-padding), 5rem)
+//     }
+//     @media (min-aspect-ratio: 1/1) {
+//         .nav-link {
+//             --bs-nav-link-font-size: 2.5rem;
+//         }
+//     }
+// }

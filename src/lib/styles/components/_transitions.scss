@@ -1,0 +1,23 @@
+.flip-target {
+    &.targeting {
+        opacity: 0;
+    }
+    &.flip-done {
+        opacity: 1;
+    }
+}
+
+.flip-clone {
+    * {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        clip-path: none !important;
+        // transform: none !important;
+    }
+    .hover-image {
+        width: 100%;
+        height: 100%;
+        clip-path: none !important;
+    }
+}

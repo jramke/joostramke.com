@@ -4,7 +4,7 @@
 
 <section>
     <div class="top">
-        <img src="https://joostramke.com/favicon.png" alt="" />
+        <img src="https://avatars.githubusercontent.com/u/81250358?v=4" alt="" />
     </div>
     <div class="bottom">
         <h1>Joost Ramke</h1>
@@ -31,6 +31,8 @@
     img {
         width: 140px;
         height: 140px;
+        border-radius: 50%;
+        overflow: hidden;
     }
     .bottom {
         display: flex;

@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --foreground: 20 14% 4%;
+        --background: 0 0% 95%;
+        --muted: 0 0% 43%;
+        --border: 0 0% 85%;
+        --secondary: 20 8% 30%;
+
+        --selection-blur-color: hsl(var(--foreground));
+
+        /* gradients generated using the scrim method https://larsenwork.com/easing-gradients/ */
+		--smooth-gradient-stops-white-transparent: rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.738) 19%, rgba(255, 255, 255, 0.541) 34%, rgba(255, 255, 255, 0.382) 47%, rgba(255, 255, 255, 0.278) 56.5%, rgba(255, 255, 255, 0.194) 65%, rgba(255, 255, 255, 0.126) 73%, rgba(255, 255, 255, 0.075) 80.2%, rgba(255, 255, 255, 0.042) 86.1%, rgba(255, 255, 255, 0.021) 91%, rgba(255, 255, 255, 0.008) 95.2%, rgba(255, 255, 255, 0.002) 98.2%, rgba(255, 255, 255, 0) 100%;
+		--smooth-gradient-stops-transparent-white: rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.002) 1.8%, rgba(255, 255, 255, 0.008) 4.8%, rgba(255, 255, 255, 0.021) 9%, rgba(255, 255, 255, 0.042) 13.9%, rgba(255, 255, 255, 0.075) 19.8%, rgba(255, 255, 255, 0.126) 27%, rgba(255, 255, 255, 0.194) 35%, rgba(255, 255, 255, 0.278) 43.5%, rgba(255, 255, 255, 0.382) 53%, rgba(255, 255, 255, 0.541) 66%, rgba(255, 255, 255, 0.738) 81%, rgba(255, 255, 255, 1) 100%;
+    }
+    h1, h2, h3, h4, h5 {
+        text-wrap: balance;
+    }
+    p, li {
+        text-wrap: pretty;
+    }
+    ::selection {
+        text-shadow: 0 0 3px var(--selection-blur-color);
+        color: transparent;
+    }
+    html {
+        font-size: 17px;
+    }
+    body {
+        @apply bg-background text-foreground;
+        // @apply bg-background text-foreground antialiased;
+    } 
+}
+
+@layer utilities {
+    .clip-external-link {
+        -webkit-clip-path: url(#external-link-icon-path);
+        clip-path: url(#external-link-icon-path);
+    }
+}
+
+@layer components {
+    .text-link, a:not([class]) {
+        @apply 
+            text-foreground inline-block relative font-medium
+            transition-colors duration-[125ms]
+            motion-reduce:duration-0 motion-reduce:before:duration-0
+            before:absolute before:bottom-[3px] before:left-[50%] before:translate-x-[-50%] before:right-0 before:w-full before:h-[1px] before:rounded-md before:z-[-1] before:bg-current 
+            before:ease-out before:duration-[125ms]
+            hover:text-background 
+            focus-visible:text-background
+            hover:before:h-[1lh] hover:before:bottom-0 hover:before:w-[calc(100%+0.8ch)] hover:before:bg-foreground
+            focus-visible:before:h-[1lh] focus-visible:before:bottom-0 focus-visible:before:w-[calc(100%+0.8ch)] focus-visible:outline-none focus-visible:before:bg-foreground;
+    }
+    .text-tooltip {
+        @media (hover: hover) {
+            @apply underline decoration-dotted underline-offset-[3px] cursor-help;
+        }
+    }
+    a[target="_blank"]:not([data-no-external-icon]) {
+        @apply after:inline-block after:ml-1 after:mr-[2px] after:h-[10px] after:w-[10px] after:bg-current after:clip-external-link after:bg-no-repeat;
+        &:after {
+            transform: perspective(0.1px) translateZ(0);
+        }
+    }
+    // https://www.youtube.com/watch?v=c13gpBrnGEw
+    .content-grid {
+        --breakout-size: calc((var(--spacing-breakout) - var(--spacing-reading)) / 2);
+        --breakout-lg-size: calc((var(--spacing-breakout-lg) - var(--spacing-reading)) / 2);
+        display: grid;
+        grid-template-columns:
+            [full-width-start] minmax(var(--container-padding), 1fr)
+            [breakout-lg-start] minmax(0, var(--breakout-lg-size))
+            [breakout-start] minmax(0, var(--breakout-size))
+            [content-start] 
+            min(100% - (var(--container-padding) * 2), var(--spacing-reading))
+            [content-end]
+            minmax(0, var(--breakout-size)) [breakout-end]
+            minmax(0, var(--breakout-lg-size)) [breakout-lg-end]
+            minmax(var(--container-padding), 1fr) [full-width-end];
+        // justify-items: start;
+        & > * {
+            grid-column: content;
+        }
+        & > img, & > video, & > canvas, & > iframe, & > figure, & > .breakout {
+            grid-column: breakout;
+        }
+        & > .breakout-lg {
+            grid-column: breakout-lg;
+        }
+        & > .full-width {
+            grid-column: full-width;
+        }
+        & > .full-width-content {
+            grid-column: full-width;
+            display: grid;
+            grid-template-columns: inherit;
+        }
+    }
+    
+
+    [data-bits-floating-content-wrapper] {
+        z-index: 1;
+    }
+}

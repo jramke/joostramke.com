@@ -38,7 +38,7 @@
             group-hover:scale-100 group-hover:size-10 group-hover:bg-transparent group-hover:spring-bounce-[40] group-hover:spring-duration-300 
             group-focus-visible:scale-100 group-focus-visible:size-10 group-focus-visible:bg-transparent group-focus-visible:spring-bounce-[40] group-focus-visible:spring-duration-300`
         )}>
-            <enhanced:img src="/src/assets/me.jpg?w=50" class="size-full object-cover object-[center_top]" alt="" />
+            <img src={'/favicon.png'} width="50" class="size-full object-cover" alt="" />
         </div>
         <div aria-hidden="true" class="relativ flex translate-y-[1px]" style="clip-path: inset(0% -20% 0% -5%);">
             <span class={cn(

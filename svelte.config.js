@@ -11,6 +11,10 @@ const config = {
 	],
 	kit: {
 		adapter: adapter(),
+		alias: {
+			'$assets': './src/assets',
+			'$content': './src/content',
+		}
 	},
 	compilerOptions: {
 		css: 'injected', // this is needed so we can generate the og image component and pass the body and styles to satori 

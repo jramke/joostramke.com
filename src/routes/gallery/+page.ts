@@ -1,8 +1,8 @@
 import type { PageLoad } from './$types';
-import { getGallery } from '$lib/api';
+import { galleryService } from '$lib/services';
 
 export const load = (async () => {
-    const gallery = await getGallery();
+    const gallery = await galleryService.getGallery();
 
     return { 
         gallery,

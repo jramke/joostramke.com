@@ -1,19 +1,19 @@
-import type { Project } from "$lib/types.js";
-import { error, json } from "@sveltejs/kit";
+import { projectService } from "$lib/services";
+import { error } from "@sveltejs/kit";
 
-export async function load({ params, parent }) {
-    const slug = params.slug;
+export async function load({ params }) {
+    const slug = params.slug;  
 
     try {        
-        const project = await import(`../../../projects/${slug}/index.md`);
-        project.metadata.slug = slug;
+        const project = await projectService.getProject(slug);
 
         return {
-            current: project.metadata as Project,
-            content: project.default,
-            title: project.metadata.title,
+            meta: project.meta,
+            content: project.content,
+            title: project.meta.title,
         };
     } catch (err) {
-        error(404, `Project ${slug} not found.`)
+        console.error(err);
+        error(404, `Project ${slug} not found.`);
     }
 };

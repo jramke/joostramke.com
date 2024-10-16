@@ -1,9 +1,11 @@
 <script lang="ts">
-    import * as Tooltip from "$lib/components/tooltip";
+    // import * as Tooltip from "$lib/components/tooltip";
 	import { Image } from "$lib/components/image";
 	import { pages } from "$lib/site";
     import { cn, getAge } from "$lib/utils";
 	import Arrow from "./arrow.svelte";
+
+    import Me from "$assets/me.jpg";
 
 </script>
 
@@ -35,7 +37,7 @@
                 "hover:scale-110 hover:-rotate-2 hover:shadow-foreground/[.03]",
                 "max-reading:ml-2.5"
             )}>
-                <Image src="/src/assets/me.jpg" alt="Joost Ramke" class="aspect-[0.95] object-cover object-[50%_30%]" />
+                <Image src={Me} alt="Joost Ramke" class="aspect-[0.95] object-cover object-[50%_30%]" />
             </div>
             <div class={cn(
                 "flex gap-5 transition-colors duration-200",

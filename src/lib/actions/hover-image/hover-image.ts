@@ -37,7 +37,6 @@ export default class HoverImage {
             useChild: false,
 			zIndex: -1,
             attributes: {},
-            imgUrl: '',
         }, options);
 		this.el = this.options.useChild ? element.firstChild as HTMLElement : element;
 
@@ -61,10 +60,6 @@ export default class HoverImage {
 		
 		if (element.hasAttribute('data-hover-img-init')) {
             throw new Error('HoverImage: Already initialized');
-        };
-		
-        if (!this.options.imgUrl) {
-            throw new Error('HoverImage: imgUrl is required');
         }
 		
 		const createdImg = this.createHoverImage();
@@ -161,7 +156,7 @@ export default class HoverImage {
 	private createHoverImage() {
 		let imgWrap = document.createElement('div');
 		// We use a svelte component here because we use the enhanced:img to handle all images so the path would break in build 
-		let imageElm = mount(Image, { target: imgWrap, props: { src: this.options.imgUrl } });
+		let imageElm = mount(Image, { target: imgWrap, props: { src: this.options.image } });
 		// let imageElm = new Image();
 		// imageElm.src = this.options.imgUrl;
 		imgWrap.className = "aspect-[0.9] pointer-events-none outline-none top-0 left-0 w-[250px] fixed [&_img]:object-cover [&_img]:size-full";

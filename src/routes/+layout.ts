@@ -1,9 +1,9 @@
 export const prerender = true;
 
-import { getProjects } from '$lib/api';
+import { projectService } from '$lib/services';
 
 export async function load({ url }) {
-    const projects = await getProjects();
+    const projects = await projectService.getProjects();
     
     return {
         projects: projects,

@@ -5,6 +5,8 @@
 	import { Slider } from "$lib/components/slider";
     import { pages } from "$lib/site";
 
+    import Wave from "$assets/wave.png";
+
     const sliderItems = $page.data.projects.highlights;
 
 </script>
@@ -12,7 +14,7 @@
 <section class="content-grid">
     <h1 class="inline-block font-medium">
         Hello, I'm Joost
-        <enhanced:img use:wave src="/src/assets/wave.png?w=50" class="size-6 inline-block ml-1 -mt-[5px]" alt="Waving emoji" />
+        <img use:wave src={Wave} class="size-6 inline-block ml-1 -mt-[5px]" alt="Waving emoji" />
     </h1>
     <p class="text-balance text-secondary prose">
         a developer & designer crafting digital experiences that seamlessly blend form and function. Currently working at <a href="https://brainworxx.de" target="_blank">Brainworxx</a>.

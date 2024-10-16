@@ -33,7 +33,7 @@
             <ul>
                 {#each workItems as { title, slug, thumbnail, date, tags }, i}
                     <li>
-                        <a href={'projects/' + slug} class="block text-foreground py-3 group group" use:hoverImage={{ imgUrl: thumbnail, zIndex: 1, attributes: { "data-flip-id": `thumbnail-${slug}` } }}>
+                        <a href={'projects/' + slug} class="block text-foreground py-3 group group" use:hoverImage={{ image: thumbnail, zIndex: 1, attributes: { "data-flip-id": `thumbnail-${slug}` } }}>
                             <div class="flex gap-4 justify-between items-center">
                                 <h2 class={cn(
                                     "font-medium whitespace-nowrap spring-bounce-40 transition-[padding,margin,font-weight] spring-duration-300",

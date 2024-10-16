@@ -2,6 +2,8 @@
 	import { elasticDiv } from "$lib/actions";
     import { legalsPages, footerPages, socialPages } from "$lib/site";
 
+    import Signature from "$assets/signature.png";
+
 </script>
 
 <div class="relative z-[6]">
@@ -14,7 +16,7 @@
                         <h2 class="font-medium">
                             Thanks for checking by 
                         </h2>
-                        <enhanced:img src="/src/assets/signature.png?w=150" alt="Signature 'Joost'" class="w-[150px] invert mt-4" />
+                        <img src={Signature} alt="Signature 'Joost'" width="150" class="w-[150px] invert mt-4" />
                     </div>
                     <div>
                         <h2 class="font-medium mb-1">Pages</h2>

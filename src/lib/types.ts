@@ -1,3 +1,15 @@
+export type Picture = {
+    /**
+     * Key is format. Value is srcset.
+     */
+    sources: Record<string, string>;
+    img: {
+        src: string;
+        w: number;
+        h: number;
+    };
+}
+
 export type Project = {
     title: string;
     date: string;

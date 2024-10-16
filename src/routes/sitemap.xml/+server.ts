@@ -1,4 +1,4 @@
-import { getProjects } from '$lib/api';
+import { projectService } from '$lib/services';
 
 export const prerender = true;
 
@@ -7,7 +7,7 @@ const pages = ['about', 'gallery', 'crafts', 'projects', 'colophon', 'privacy', 
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {
-  const projects = (await getProjects()).latest.map((project) => project.slug);
+  const projects = (await projectService.getProjects()).latest.map((project) => project.slug);
 
 	const body = sitemap(site, pages, projects);
 

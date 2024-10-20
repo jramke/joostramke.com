@@ -13,17 +13,17 @@ type Pages = {
 };
 
 export const pages = {
-    home: { slug: "/", title: "Home", target: "_self", positions: ["footer"] as PagePosition[] },
+    home: { slug: "/", title: "Home", target: null, positions: ["footer"] as PagePosition[] },
 
-    projects: { slug: "/projects", title: "Projects", target: "_self", positions: ["main", "offcanvas", "footer"] as PagePosition[] },
+    projects: { slug: "/projects", title: "Projects", target: null, positions: ["main", "offcanvas", "footer"] as PagePosition[] },
     crafts: { slug: "https://crafts.joostramke.com", title: "Crafts", target: "_blank", positions: ["main", "offcanvas", "footer"] as PagePosition[] },
-    gallery: { slug: "/gallery", title: "Gallery", target: "_self", positions: ["main", "offcanvas", "footer"] as PagePosition[] },
-    about: { slug: "/about", title: "About", target: "_self", positions: ["main", "offcanvas", "footer"] as PagePosition[] },
+    gallery: { slug: "/gallery", title: "Gallery", target: null, positions: ["main", "offcanvas", "footer"] as PagePosition[] },
+    about: { slug: "/about", title: "About", target: null, positions: ["main", "offcanvas", "footer"] as PagePosition[] },
     cv: { slug: "https://cv.joostramke.com", title: "CV", target: "_blank", positions: ["footer", "offcanvas"] as PagePosition[] },
 
-    colophon: { slug: "/colophon", title: "Colophon", target: "_self", positions: ["legals"] as PagePosition[] },
-    privacy: { slug: "/privacy", title: "Privacy", target: "_self", positions: ["legals"] as PagePosition[] },
-    imprint: { slug: "/imprint", title: "Imprint", target: "_self", positions: ["legals"] as PagePosition[] },
+    colophon: { slug: "/colophon", title: "Colophon", target: null, positions: ["legals"] as PagePosition[] },
+    privacy: { slug: "/privacy", title: "Privacy", target: null, positions: ["legals"] as PagePosition[] },
+    imprint: { slug: "/imprint", title: "Imprint", target: null, positions: ["legals"] as PagePosition[] },
 
     twitter: { slug: "https://twitter.com/jstrmk_", title: "x.com", target: "_blank", positions: ["social"] as PagePosition[] },
     github: { slug: "https://github.com/jramke", title: "Github", target: "_blank", positions: ["social"] as PagePosition[] },

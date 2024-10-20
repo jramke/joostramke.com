@@ -40,8 +40,6 @@
 				hide();
 			}
 			// cmd + m minimizes the browser on mac :/
-			console.log(e.key, e.shiftKey);
-			
 			if (e.key.toLowerCase() === 'm' && e.shiftKey) {
 				toggle();
 			}
@@ -169,35 +167,37 @@
 
 <!-- TODO: improve keyboard focusablility -->
 {#if showToggle}
+<div class="fixed top-8 right-8 lg:right-10 lg:top-10 z-[52]">
 	<Tooltip.Root delayDuration={1500}>
 		<Tooltip.Trigger>
 			{#snippet child({ props })}
-				<div {...props} class="fixed top-8 right-8 lg:right-10 lg:top-10 z-[52]">
-					<button
-						transition:flyScaleBlur={{ y: -8}}
-						bind:this={toggleBtn}
-						onclick={() => toggle()}
-						class={cn(
-							"font-medium transition-[box-shadow] px-2 py-1 rounded-lg border border-border bg-white",
-							!openOrOpening && "shadow-md",
-						)}
-						aria-expanded={openOrOpening}
-						aria-controls="navcanvas"
-					>
-						<span aria-hidden="true" class="flex items-center gap-2">
-							{openOrOpening ? 'close' : 'menu'}
-						</span>
-						<span class="sr-only">{openOrOpening ? 'Close menu' : 'Open menu'}</span>
-					</button>
-				</div>
-			{/snippet}
-		</Tooltip.Trigger>
-		<Tooltip.Content side="bottom">
-			<span class="flex items-center gap-2 text-muted">
-				Shortcut: <Keyboard keys={['shift', 'm']} />
-			</span>
-		</Tooltip.Content>
-	</Tooltip.Root>
+				<button
+					{...props}
+					transition:flyScaleBlur={{ y: -8}}
+					bind:this={toggleBtn}
+					onclick={() => toggle()}
+					class={cn(
+						"font-medium transition-[box-shadow] px-2 py-1 rounded-lg border border-border bg-white",
+						!openOrOpening && "shadow-md",
+					)}
+					aria-expanded={openOrOpening}
+					aria-controls="navcanvas"
+				>
+					<span aria-hidden="true" class="flex items-center gap-2">
+						{openOrOpening ? 'close' : 'menu'}
+					</span>
+					<span class="sr-only">{openOrOpening ? 'Close menu' : 'Open menu'}</span>
+				</button>
+				{/snippet}
+			</Tooltip.Trigger> 
+			<!-- ZINDEX TODO: a -->
+			<Tooltip.Content side="bottom" align="end">
+				<span class="flex items-center gap-2 text-muted text-xs">
+					Shortcut: <Keyboard keys={['shift', 'M']} />
+				</span>
+			</Tooltip.Content>
+		</Tooltip.Root>
+	</div>
 {/if}
 
 {#if offcanvasState === 'open' || offcanvasState === 'opening'}

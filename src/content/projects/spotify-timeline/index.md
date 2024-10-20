@@ -13,8 +13,8 @@ thumbnailAlt: 'Screenshot of the spotify timeline web app displaying a spotify t
 ---
 
 <script>
-    import { Video } from '$lib/components/video'
-    import timelineVideo from './timeline.mp4'
+    import { Video } from '$lib/components/video';
+    import Timeline from './timeline.mp4';
 </script>
 
 Spotify Timeline is a little site where you can explore beautiful timelines of your Spotify playlists. It let's you view all your songs grouped by months in a smooth minimalistic timeline chart.
@@ -29,7 +29,7 @@ To get private playlists form a Spotify user via the Spotify API we need an acce
 The main part of the app is the timeline component. It  consists of two individual components. The first one is a mouse follower with keyboard support using <a href="https://www.framer.com/motion/" target="_blank">Framer Motion</a> to indicate the active item. The second is the scrollarea which is built on top of <a href="https://www.radix-ui.com/" target="_blank">Radix UI's</a> scrollarea primitive. Enhanced with a nice css `animation-timeline` gradient mask and a custom `useMousescroll` hook to let the user easily explore the timeline by moving the mouse to the edges.
 
 <Video 
-    src={timelineVideo} 
+    src={Timeline} 
     autoplay={true} 
     muted={true} 
     loop={true} 

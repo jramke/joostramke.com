@@ -10,7 +10,7 @@
     <div use:elasticDiv class="bg-foreground text-background font-[300]">
         <footer class="content-grid pt-20" style="--selection-blur-color: hsl(var(--background))">
             <div class="breakout-lg">
-                <div class="grid grid-cols-4">
+                <div class="grid gap-y-16 grid-cols-2 md:grid-cols-4">
                     <div class="col-span-2">
                         <!-- <img id="wave" data-aos-delay="1800" class="size-6 inline-block -mt-[5px]" src="/peace.png" alt="Peace emoji"> -->
                         <h2 class="font-medium">

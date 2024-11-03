@@ -5,7 +5,9 @@
     import { cn, getAge } from "$lib/utils";
 	import Arrow from "./arrow.svelte";
 
-    import Me from "$assets/me.jpg";
+    // import Me from "$assets/me.jpg";
+    import Me from "$assets/me.jpg?enhanced";
+    // import Me from "../../assets/me.jpg?enhanced";
 
 </script>
 
@@ -37,7 +39,10 @@
                 "hover:scale-110 hover:-rotate-2 hover:shadow-foreground/[.03]",
                 "max-reading:ml-2.5"
             )}>
-                <Image src={Me} alt="Joost Ramke" class="aspect-[0.95] object-cover object-[50%_30%]" />
+                <!-- <Image src={Me} alt="Joost Ramke" class="aspect-[0.95] object-cover object-[50%_30%]" /> -->
+                <figure>
+                    <enhanced:img src={Me} alt="Joost Ramke" class="aspect-[0.95] object-cover object-[50%_30%]" />
+                </figure>
             </div>
             <div class={cn(
                 "flex gap-5 transition-colors duration-200",

@@ -56,7 +56,7 @@ export default {
 				'fade-in-bottom': {
 					'0%': { 
 						opacity: 0,
-						transform: 'translateY(var(--amount, max(1.5rem, 100%))) scaleY(2)',
+						transform: 'translateY(var(--amount, max(2.5rem, 100%))) scaleY(2)',
 						filter: 'blur(2px)',
 					},
 					'100%': { 

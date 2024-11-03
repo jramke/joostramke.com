@@ -4,8 +4,31 @@
 	import { cn } from "$lib/utils";
 	import { ChevronLeft, ChevronRight } from "lucide-svelte";
     import { Image } from "$lib/components/image";
+	import { onMount } from "svelte";
 
     let { items }: { items: Project[] } = $props();
+
+    const minDelay = 400;
+    let loadedImages = $state<string[]>([]);
+    let allImagesLoaded = $derived.by(() => loadedImages.length === items.length);
+    let minDelayPassed = $state(false);
+    let showSlider = $state(false);
+
+    onMount(() => {       
+        const timeout = setTimeout(() => {
+            minDelayPassed = true;
+        }, minDelay);
+
+        return () => clearTimeout(timeout);
+    });
+
+    $effect(() => {
+        if (showSlider) return;
+        
+        if (allImagesLoaded && minDelayPassed) {
+            showSlider = true;
+        }
+    });
 
 </script>
 
@@ -14,7 +37,9 @@
 <div class={cn(
     "overflow-hidden -mt-[var(--swiper-slide-spacing)]",
     "[--swiper-height:15rem;] [--swiper-slide-width:15rem;] [--swiper-slide-spacing:1.5rem;]",
-    "md:[--swiper-slide-width:25rem;] md:[--swiper-height:25rem;]"
+    "md:[--swiper-slide-width:25rem;] md:[--swiper-height:25rem;]",
+    "duration-[350ms] transition-[opacity,filter,transform]",
+    !showSlider && "opacity-0 blur-lg translate-y-[2rem]"
 )}>
     <div 
         class="group motion-swiper relative w-full h-[var(--swiper-height)] mt-[var(--swiper-slide-spacing)] mb-8 cursor-grab data-[dragging]:cursor-grabbing"
@@ -39,6 +64,7 @@
                                 alt={item.thumbnailAlt || ""} 
                                 class="object-cover size-full pointer-events-none select-none"
                                 omitFigure={true}
+                                onload={() => loadedImages.push(item.slug)} 
                             />
                         </div>
                     </a>

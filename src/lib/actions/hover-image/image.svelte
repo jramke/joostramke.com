@@ -1,9 +1,9 @@
 <script lang="ts">
+	import type { Picture } from "$lib/types";
 	import { Image } from "$lib/components/image";
-	// import type { Picture } from "$lib/types";
 
-    let { src }: { src: string } = $props();
+    let { src }: { src: Picture } = $props();
 
 </script>
 
-<Image {src} omitFigure={true} />
+<Image image={src} omitFigure={true} />

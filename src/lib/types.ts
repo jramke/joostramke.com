@@ -15,7 +15,7 @@ export type Project = {
     date: string;
     tags: Array<'Design' | 'Development'>;
     client: string;
-    thumbnail: string;
+    thumbnail: Picture;
     thumbnailAlt?: string;
     media: Array<string>;
     hidden?: boolean;

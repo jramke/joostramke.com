@@ -7,7 +7,7 @@ class ProjectService {
 	private paths: Record<string, any>;
 
 	constructor() {
-		// this.thumbnails = import.meta.glob('/src/content/projects/*/thumbnail.jpg', {
+		// this.thumbnails = import.meta.glob('../../content/projects/*/thumbnail.jpg', {
 		// 	eager: true,
 		// 	query: { enhanced: true }
 		// });
@@ -44,9 +44,9 @@ class ProjectService {
 	}
 
 	private async getProjectThumbnail(slug: string) {
-		// const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg?enhanced`);
-		const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg`);
-		const thumbnail = thumbnailModule.default as string;
+		const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg?enhanced`);
+		// const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg`);
+		const thumbnail = thumbnailModule.default as Picture;
 
 		return thumbnail;
 	}

@@ -15,6 +15,8 @@
 		children?: Snippet;
 	} = $props();
 
+	let isTouch = $state(false);
+
 	const transition: Record<"top" | "right" | "bottom" | "left", Partial<FlyAndScaleParams>> = {
         top: { y: 8, x: 0 },
         bottom: { y: -8, x: 0 },
@@ -22,11 +24,15 @@
         right: { y: 0, x: -8 },
     };
 
+	$effect(() => {
+		window.matchMedia("(pointer: coarse)").matches ? isTouch = true : isTouch = false;
+	});
+
 </script>
 
 <TooltipPrimitive.Content sideOffset={8} bind:ref {...restProps} forceMount={true} {side}>
 	{#snippet child({ props, open })}
-		{#if open}
+		{#if open && !isTouch}
 			<span 
 				class={cn("block")} 
 				{...props} 

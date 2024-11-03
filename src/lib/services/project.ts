@@ -3,14 +3,14 @@ import { dev } from '$app/environment';
 
 class ProjectService {
 	private static instance: ProjectService | null = null;
-	// private thumbnails: Record<string, any>;
+	private thumbnails: Record<string, any>;
 	private paths: Record<string, any>;
 
 	constructor() {
-		// this.thumbnails = import.meta.glob('../../content/projects/*/thumbnail.jpg', {
-		// 	eager: true,
-		// 	query: { enhanced: true }
-		// });
+		this.thumbnails = import.meta.glob('../../content/projects/*/thumbnail.jpg', {
+			eager: true,
+			query: { enhanced: true }
+		});
 
 		this.paths = import.meta.glob('../../content/projects/**/index.md', { eager: true });
 	}
@@ -44,7 +44,12 @@ class ProjectService {
 	}
 
 	private async getProjectThumbnail(slug: string) {
-		const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg?enhanced`);
+		const thumbnailPath = Object.keys(this.thumbnails).find((path) => path.includes(slug));
+		if (!thumbnailPath) {
+			throw new Error(`Thumbnail not found: Couldn't find ${slug} in thumbnails object.`);
+		}
+		const thumbnailModule = this.thumbnails[thumbnailPath];
+		// const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg?enhanced`);
 		// const thumbnailModule = await import(`$content/projects/${slug}/thumbnail.jpg`);
 		const thumbnail = thumbnailModule.default as Picture;
 

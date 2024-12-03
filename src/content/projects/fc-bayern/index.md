@@ -10,9 +10,9 @@ client: 'FC Bayern (concept)'
 <script>
     import { Image } from '$lib/components/image';
 
-    import Preview from './232shots_so.jpg';
+    import Preview from './232shots_so.jpg?enhanced';
 </script>
 
 As one of my first web designs i created a redesign of the web shop of the german football club FC Bayern. This was just a concept.
 
-<Image src={Preview} alt="Screenshot of the trikot product page." />
+<Image image={Preview} alt="Screenshot of the trikot product page." />

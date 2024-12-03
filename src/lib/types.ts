@@ -29,6 +29,6 @@ export type Project = {
 export type Gallery = {
     print?: string;
     orientation: 'portrait' | 'landscape';
-    image: string;
+    image: Picture;
     slug: string;
 };

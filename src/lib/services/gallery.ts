@@ -49,16 +49,12 @@ class GalleryService {
 	}
 
     private async getGalleryImage(slug: string) {
-		// const imageModule = await import(`$content/gallery/${slug}/image.jpg?enhanced`);
-		// // const imageModule = await import(`$content/gallery/${slug}/image.jpg`);
-		// const image = imageModule.default as string;
-
         const imagePath = Object.keys(this.images).find((path) => path.includes(slug));
         if (!imagePath) {
             throw new Error(`Image not found: Couldn't find ${slug} in images object.`);
         }
         const imageModule = this.images[imagePath];
-        const image = imageModule.default as string;
+        const image = imageModule.default as Picture;
         
 		return image;
 	}

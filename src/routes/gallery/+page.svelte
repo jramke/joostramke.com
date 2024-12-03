@@ -36,7 +36,7 @@
                 {#each data.gallery as item, i}
                     <button data-photogrid-item class="relative flex justify-center items-center cursor-zoom-in max-lg:!transform-none max-lg:![grid-area:auto]" style={`grid-area: ${gridPositions[i]}`}>
                         <div data-photogrid-item-inner-wrapper>
-                            <Image data-photogrid-item-inner data-url={item.print} src={item.image} alt="" class="max-lg:![clip-path:none]" />
+                            <Image data-photogrid-item-inner data-url={item.print} image={item.image} alt="" class="max-lg:![clip-path:none]" />
                         </div>
                     </button>
                 {/each}

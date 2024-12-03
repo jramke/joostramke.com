@@ -16,7 +16,7 @@ thumbnailAlt: 'Screenshot of the Stashlist landing page hero.'
     import { Image } from '$lib/components/image';
     import * as Tooltip from '$lib/components/tooltip';
 
-    import Stashes from './stashes.jpeg';
+    import Stashes from './stashes.jpeg?enhanced';
     import Groups from './groups.jpeg';
     import Extension from './extension.jpeg';
     import OhNo from './oh-no.jpeg';
@@ -46,7 +46,7 @@ I used <a href="https://kit.svelte.dev/" target="_blank">Sveltekit</a> with Type
 
 First I started with the web app which handles all the main logics and api endpoints. For user authentication I used <a href="https://lucia-auth.com/" target="_blank">Lucia</a> to keep control over the user data which is stored in a SQLite database.
 
-<Image src={Stashes} alt="Screenshot of the Stashlist web app UI." />
+<Image image={Stashes} alt="Screenshot of the Stashlist web app UI." />
 
 <Image src={Groups} alt="Screenshot of the Stashlist groups list." />
 

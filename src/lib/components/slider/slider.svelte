@@ -60,7 +60,7 @@
                     >
                         <div class="size-full" data-flip-id="thumbnail-{item.slug}">
                             <Image 
-                                src={item.thumbnail} 
+                                image={item.thumbnail} 
                                 alt={item.thumbnailAlt || ""} 
                                 class="object-cover size-full pointer-events-none select-none"
                                 omitFigure={true}

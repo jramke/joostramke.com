@@ -1,7 +1,7 @@
-// import type { Picture } from "$lib/types";
+import type { Picture } from "$lib/types";
 
 export type HoverImageOptions = {
-    image: string;
+    image: Picture;
     maxVel?: number;
     lerp?: number;
     base?: number;

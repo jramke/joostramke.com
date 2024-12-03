@@ -156,7 +156,7 @@ export default class HoverImage {
 	private createHoverImage() {
 		let imgWrap = document.createElement('div');
 		// We use a svelte component here because we use the enhanced:img to handle all images so the path would break in build 
-		let imageElm = mount(Image, { target: imgWrap, props: { src: this.options.image } });
+		let imageElm = mount(Image, { target: imgWrap, props: { image: this.options.image } });
 		// let imageElm = new Image();
 		// imageElm.src = this.options.imgUrl;
 		imgWrap.className = "aspect-[0.9] pointer-events-none outline-none top-0 left-0 w-[250px] fixed [&_img]:object-cover [&_img]:size-full";

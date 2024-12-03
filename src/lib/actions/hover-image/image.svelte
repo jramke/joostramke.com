@@ -2,8 +2,8 @@
 	import type { Picture } from "$lib/types";
 	import { Image } from "$lib/components/image";
 
-    let { src }: { src: string } = $props();
+    let { image }: { image: Picture } = $props();
 
 </script>
 
-<Image src={src} omitFigure={true} />
+<Image image={image} omitFigure={true} />

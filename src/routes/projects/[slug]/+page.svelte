@@ -33,7 +33,7 @@
         </div>
         <div class="breakout mt-section-inner">
             <Image 
-                src={data.meta.thumbnail} 
+                image={data.meta.thumbnail} 
                 class="aspect-[1.2] w-full h-full object-cover flip-target" 
                 data-flip-id="thumbnail-{data.meta.slug}" 
                 alt={data.meta.thumbnailAlt} 

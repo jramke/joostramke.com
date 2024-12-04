@@ -9,18 +9,20 @@ class ProjectService {
 	constructor() {
 		this.thumbnails = import.meta.glob('../../content/projects/*/thumbnail.jpg', {
 			eager: true,
-			query: { enhanced: true }
+			query: { enhanced: true },
 		});
 
-		this.paths = import.meta.glob('../../content/projects/**/index.md', { eager: true });
+		this.paths = import.meta.glob('../../content/projects/**/index.md', {
+			eager: true,
+		});
 	}
 
 	public static getInstance() {
-        if (!ProjectService.instance) {
-            ProjectService.instance = new ProjectService();
-        }
-        return ProjectService.instance;
-    }
+		if (!ProjectService.instance) {
+			ProjectService.instance = new ProjectService();
+		}
+		return ProjectService.instance;
+	}
 
 	async getProject(slug: string) {
 		const projectPath = Object.keys(this.paths).find((path) => path.includes(slug));
@@ -60,7 +62,7 @@ class ProjectService {
 		const thumbnail = await this.getProjectThumbnail(slug);
 		const fileMetadata = file.metadata as Omit<Project, 'slug' | 'thumbnail'>;
 		const metadata = { ...fileMetadata, slug, thumbnail } satisfies Project;
-	
+
 		return metadata;
 	}
 
@@ -101,7 +103,7 @@ class ProjectService {
 		return {
 			highlights,
 			archived,
-			latest
+			latest,
 		};
 	}
 }

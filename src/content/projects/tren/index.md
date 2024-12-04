@@ -1,6 +1,6 @@
 ---
-title: "Tren Gym App"
-tags: 
+title: 'Tren Gym App'
+tags:
     - Development
     - Design
 date: '2022-09-08'

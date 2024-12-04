@@ -1,6 +1,6 @@
 ---
-title: "Zuretti"
-tags: 
+title: 'Zuretti'
+tags:
     - Development
     - Design
 date: '2022-11-24'

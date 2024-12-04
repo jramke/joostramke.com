@@ -1,6 +1,6 @@
 ---
-title: "LevlUp"
-tags: 
+title: 'LevlUp'
+tags:
     - Design
 date: '2019-10-05'
 client: 'LevlUp (concept)'

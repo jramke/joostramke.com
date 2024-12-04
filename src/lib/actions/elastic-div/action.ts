@@ -3,23 +3,23 @@ import type { Action } from 'svelte/action';
 import { ElasticDiv } from './elastic-div';
 
 export const elasticDiv: Action<HTMLElement> = (node) => {
-    let elasticDiv: ElasticDiv;
+	let elasticDiv: ElasticDiv;
 
-    const initializeElasticDiv = () => {
-        if (elasticDiv) {
-            elasticDiv.kill();
-        }
-        elasticDiv = new ElasticDiv(node);
-    };
+	const initializeElasticDiv = () => {
+		if (elasticDiv) {
+			elasticDiv.kill();
+		}
+		elasticDiv = new ElasticDiv(node);
+	};
 
-    initializeElasticDiv();
+	initializeElasticDiv();
 
-    return {
-        update() {
-            initializeElasticDiv();
-        },
-        destroy() {
-            elasticDiv?.kill();
-        }
-    };
+	return {
+		update() {
+			initializeElasticDiv();
+		},
+		destroy() {
+			elasticDiv?.kill();
+		},
+	};
 };

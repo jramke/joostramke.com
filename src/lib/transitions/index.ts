@@ -1,17 +1,23 @@
-import { cubicOut } from "svelte/easing";
-import type { TransitionConfig } from "svelte/transition";
+import { cubicOut } from 'svelte/easing';
+import type { TransitionConfig } from 'svelte/transition';
 
 export type FlyAndScaleParams = {
 	y?: number;
 	x?: number;
 	start?: number;
 	duration?: number;
-    blur?: number;
+	blur?: number;
 };
 
 export const flyScaleBlur = (
 	node: Element,
-	params: FlyAndScaleParams = { y: 8, x: 0, start: 0.95, duration: 150, blur: 5 }
+	params: FlyAndScaleParams = {
+		y: 8,
+		x: 0,
+		start: 0.95,
+		duration: 150,
+		blur: 5,
+	},
 ): TransitionConfig => {
 	const style = getComputedStyle(node);
 	const transform = style.transform === 'none' ? '' : style.transform;
@@ -45,9 +51,9 @@ export const flyScaleBlur = (
 			return styleToString({
 				transform: `${transform} translate3d(${x}px, ${y}px, 0) scale(${scale})`,
 				opacity: t,
-				filter: `blur(${blur}px)`
+				filter: `blur(${blur}px)`,
 			});
 		},
-		easing: cubicOut
+		easing: cubicOut,
 	};
 };

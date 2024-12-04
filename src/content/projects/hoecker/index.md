@@ -1,6 +1,6 @@
 ---
-title: "Höcker"
-tags: 
+title: 'Höcker'
+tags:
     - Design
 date: '2019-02-13'
 client: 'Höcker (concept)'

@@ -1,3 +1,3 @@
-import { photogrid } from "./action";
+import { photogrid } from './action';
 
 export { photogrid };

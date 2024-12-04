@@ -7,15 +7,15 @@ const pages = ['about', 'gallery', 'crafts', 'projects', 'colophon', 'privacy', 
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET() {
-  const projects = (await projectService.getProjects()).latest.map((project) => project.slug);
+	const projects = (await projectService.getProjects()).latest.map((project) => project.slug);
 
 	const body = sitemap(site, pages, projects);
 
 	return new Response(body, {
-      headers: {
-        'Content-Type': 'application/xml',
-      }
-  });
+		headers: {
+			'Content-Type': 'application/xml',
+		},
+	});
 }
 
 const sitemap = (site: string, pages: string[], projects: string[]) => `<?xml version="1.0" encoding="UTF-8" ?>
@@ -34,24 +34,24 @@ const sitemap = (site: string, pages: string[], projects: string[]) => `<?xml ve
   </url>
 
   ${pages
-	.map(
-		(page) => `
+		.map(
+			(page) => `
   <url>
     <loc>${site}/${page}</loc>
     <priority>0.5</priority>
   </url>
-  `
-	)
-	.join('')}
+  `,
+		)
+		.join('')}
 
   ${projects
-	.map(
-		(post) => `
+		.map(
+			(post) => `
   <url>
     <loc>${site}/projects/${post}</loc>
     <priority>0.5</priority>
   </url>
-  `
-	)
-	.join('')}
+  `,
+		)
+		.join('')}
 </urlset>`;

@@ -1,3 +1,3 @@
-import Transition from "./transition.svelte";
+import Transition from './transition.svelte';
 
 export { Transition };

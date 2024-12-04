@@ -1,59 +1,68 @@
-import type { PhotogridOptions } from "./types";
+import type { PhotogridOptions } from './types';
 
-import gsap from "gsap";
-import Flip from "gsap/dist/Flip";
-import { getRandomNumber, lerp, clamp } from "$lib/utils";
+import gsap from 'gsap';
+import Flip from 'gsap/dist/Flip';
+import { getRandomNumber, lerp, clamp } from '$lib/utils';
 
 // TODO: keyboard focus support
 export default class Photogrid {
-    grid: HTMLElement;
-    gridParent: HTMLElement;
-    items: NodeListOf<Element>;
-    options: Required<PhotogridOptions>;
-    itemsRandomStart: { x: number; y: number; }[];
-    event: { 
-        open: (e: Event) => void, 
-        close: () => void, 
-        mousemove: (e: MouseEvent) => void
-    };
-    x: number;
-    y: number;
-    lastX: number;
-    lastY: number;
-    base: number;
-    vel: { x: number; y: number; };
-    lerpVel: { x: number; y: number; };
-    paused: boolean;
-    pointsManually: boolean;
-    transitioning: boolean;
-    transitionSides: number[];
-    state: any;
-    activeItem: any;
-    activeParent: any;
-    points: { left: { top: number; bottom: number; }; bottom: { left: number; right: number; }; right: { bottom: number; top: number; }; top: { right: number; left: number; }; };
-    maskPath: string;
-    mask: SVGPathElement[];
-    lightbox: HTMLElement;
+	grid: HTMLElement;
+	gridParent: HTMLElement;
+	items: NodeListOf<Element>;
+	options: Required<PhotogridOptions>;
+	itemsRandomStart: { x: number; y: number }[];
+	event: {
+		open: (e: Event) => void;
+		close: () => void;
+		mousemove: (e: MouseEvent) => void;
+	};
+	x: number;
+	y: number;
+	lastX: number;
+	lastY: number;
+	base: number;
+	vel: { x: number; y: number };
+	lerpVel: { x: number; y: number };
+	paused: boolean;
+	pointsManually: boolean;
+	transitioning: boolean;
+	transitionSides: number[];
+	state: any;
+	activeItem: any;
+	activeParent: any;
+	points: {
+		left: { top: number; bottom: number };
+		bottom: { left: number; right: number };
+		right: { bottom: number; top: number };
+		top: { right: number; left: number };
+	};
+	maskPath: string;
+	mask: SVGPathElement[];
+	lightbox: HTMLElement;
 
 	constructor(element: HTMLElement, options: PhotogridOptions) {
-		this.options = Object.assign({}, {
-			maxVel: 20,
-            lerp: 0.1,
-			base: 0.05,
-			move: 0.08,
-			delta: 0.0005,
-			lightbox: true,
-        }, options);
+		this.options = Object.assign(
+			{},
+			{
+				maxVel: 20,
+				lerp: 0.1,
+				base: 0.05,
+				move: 0.08,
+				delta: 0.0005,
+				lightbox: true,
+			},
+			options,
+		);
 		this.grid = element;
-        this.gridParent = this.grid.parentElement as HTMLElement;
+		this.gridParent = this.grid.parentElement as HTMLElement;
 		this.items = this.grid.querySelectorAll('[data-photogrid-item]');
 		this.itemsRandomStart = this.getItemsRandomStart();
 
 		this.event = {
-            open: () => {},
-            close: () => {},
-            mousemove: () => {},
-        };
+			open: () => {},
+			close: () => {},
+			mousemove: () => {},
+		};
 		this.x = 0;
 		this.y = 0;
 		this.lastX = 0;
@@ -73,12 +82,11 @@ export default class Photogrid {
 		this.mask = this.createMask();
 		this.lightbox = document.querySelector('[data-photogrid-lightbox]') as HTMLElement;
 
-        if (element.hasAttribute('photogrid-init')) return;
+		if (element.hasAttribute('photogrid-init')) return;
 
 		this.init();
 		this.render();
 		element.setAttribute('photogrid-init', '');
-		
 	}
 	render() {
 		if (this.paused === true) {
@@ -87,13 +95,13 @@ export default class Photogrid {
 		requestAnimationFrame(() => this.render());
 
 		this.vel = {
-			x: 100 / this.options.maxVel * clamp(this.x - this.lastX, -this.options.maxVel, this.options.maxVel), 
-			y: 100 / this.options.maxVel * clamp(this.y - this.lastY, -this.options.maxVel, this.options.maxVel), 
+			x: (100 / this.options.maxVel) * clamp(this.x - this.lastX, -this.options.maxVel, this.options.maxVel),
+			y: (100 / this.options.maxVel) * clamp(this.y - this.lastY, -this.options.maxVel, this.options.maxVel),
 		};
 		this.lerpVel = {
 			x: lerp(this.lerpVel.x, this.vel.x, this.options.lerp),
 			y: lerp(this.lerpVel.y, this.vel.y, this.options.lerp),
-		}
+		};
 
 		this.points = this.getPoints();
 
@@ -104,7 +112,7 @@ export default class Photogrid {
 		const angle = (this.vel.x * this.options.delta * 180) / Math.PI;
 		gsap.to(this.items, {
 			rotate: angle,
-		})
+		});
 
 		this.lastX = this.x;
 		this.lastY = this.y;
@@ -115,31 +123,31 @@ export default class Photogrid {
 			xPercent: -50,
 			yPercent: -50,
 		});
-		gsap.fromTo(this.items, {opacity: 0, scale: 0,}, {opacity: 1, scale: 1, stagger: 0.04, delay: 0.2, ease: 'smooth'})
+		gsap.fromTo(this.items, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, stagger: 0.04, delay: 0.2, ease: 'smooth' });
 		this.event.open = (e) => {
 			if (this.transitioning === true) return;
 			this.stop();
 			// window.lenis?.stop();
 			this.transitioning = true;
 			const target = (e.target as HTMLElement).closest('[data-photogrid-item-inner-wrapper]');
-            if (!target) return;
+			if (!target) return;
 
 			this.activeItem = target;
 			this.activeParent = target?.parentElement;
-			gsap.set(this.activeParent, {height: this.activeParent.offsetHeight});
+			gsap.set(this.activeParent, { height: this.activeParent.offsetHeight });
 			this.state = Flip.getState(target);
 			// document.body.appendChild(this.lightbox);
 			this.lightbox.setAttribute('data-open', 'true');
 			this.lightbox.appendChild(target);
 			// if (this.lightboxButton) this.lightboxButton.href = (target?.firstChild as HTMLElement).dataset?.url || '#';
-			
+
 			const startBounds = this.state.elementStates[0].bounds;
 			const targetBounds = target.getBoundingClientRect();
 			const buffer = 1;
-			const left = 100 / buffer * clamp(targetBounds.left - startBounds.left, -buffer, buffer);
-			const bottom = 100 / buffer * clamp(targetBounds.bottom - startBounds.bottom, -buffer, buffer);
-			const right = 100 / buffer * clamp(targetBounds.right - startBounds.right, -buffer, buffer);
-			const top = 100 / buffer * clamp(targetBounds.top - startBounds.top, -buffer, buffer);
+			const left = (100 / buffer) * clamp(targetBounds.left - startBounds.left, -buffer, buffer);
+			const bottom = (100 / buffer) * clamp(targetBounds.bottom - startBounds.bottom, -buffer, buffer);
+			const right = (100 / buffer) * clamp(targetBounds.right - startBounds.right, -buffer, buffer);
+			const top = (100 / buffer) * clamp(targetBounds.top - startBounds.top, -buffer, buffer);
 			this.transitionSides = [left, bottom, right, top]; // left, bottom, right, top
 			setTimeout(() => {
 				this.setPointsManually(this.options.move, ...this.transitionSides);
@@ -149,27 +157,27 @@ export default class Photogrid {
 			}, 150);
 			Flip.from(this.state, {
 				ease: 'smooth-in',
-				duration: .8,
+				duration: 0.8,
 				onComplete: () => {
 					this.transitioning = false;
 				},
-			})
+			});
 			// this.lightbox.classList.add('backdrop');
 			// gsap.set(this.lightboxThumb, {opacity: 1});
 			this.activeItem.addEventListener('click', this.event.close);
 			// this.activeItem.setAttribute('data-cursor-text', 'Close');
 			// window.cursor?.setText('Close');
-		}
-		this.event.close = () =>  {
+		};
+		this.event.close = () => {
 			if (this.transitioning === true) return;
 			this.transitioning = true;
-			
+
 			this.activeItem.removeEventListener('click', this.event.close);
 			// this.activeItem.removeAttribute('data-cursor-text');
 			// window.cursor?.removeText();
 			this.lightbox.classList.remove('backdrop');
 			// gsap.set(this.lightboxThumb, {opacity: 0});
-			this.transitionSides.forEach((side, i) =>  {
+			this.transitionSides.forEach((side, i) => {
 				let value = side * 0.5;
 				this.transitionSides[i] = -value;
 			});
@@ -183,11 +191,14 @@ export default class Photogrid {
 			Flip.to(this.state, {
 				targets: this.activeItem,
 				ease: 'smooth-in',
-				duration: .8,
+				duration: 0.8,
 				onComplete: () => {
 					this.activeParent.appendChild(this.activeItem);
-					gsap.set(this.activeItem, {clearProps: 'width,height,top,left,max-width,max-height,min-width,min-height,transform,grid-area,position,padding,scale,rotate,translate,transition'});
-					gsap.set(this.activeParent, {clearProps: 'height'});
+					gsap.set(this.activeItem, {
+						clearProps:
+							'width,height,top,left,max-width,max-height,min-width,min-height,transform,grid-area,position,padding,scale,rotate,translate,transition',
+					});
+					gsap.set(this.activeParent, { clearProps: 'height' });
 					this.start();
 					// window.lenis?.start();
 					this.unsetPointsManually();
@@ -195,39 +206,37 @@ export default class Photogrid {
 					// this.lightbox.remove();
 					this.activeItem = null;
 					this.activeParent = null;
-				}
-			})
-		}
+				},
+			});
+		};
 
-        this.event.mousemove = (e) => {
+		this.event.mousemove = (e) => {
 			if (this.paused === true) return;
-            
-			this.x = (e.clientX - this.gridParent.offsetWidth / 2) / this.gridParent.offsetWidth * -(this.grid.offsetWidth - this.gridParent.offsetWidth);
-			this.y = (e.clientY - this.gridParent.offsetHeight / 2) / this.gridParent.offsetHeight * -(this.grid.offsetHeight - this.gridParent.offsetHeight);
-			
+
+			this.x = ((e.clientX - this.gridParent.offsetWidth / 2) / this.gridParent.offsetWidth) * -(this.grid.offsetWidth - this.gridParent.offsetWidth);
+			this.y = ((e.clientY - this.gridParent.offsetHeight / 2) / this.gridParent.offsetHeight) * -(this.grid.offsetHeight - this.gridParent.offsetHeight);
+
 			gsap.to(this.grid, {
 				x: this.x,
 				y: this.y,
 				xPercent: -50,
 				yPercent: -50,
 				duration: 1,
-			})
+			});
 
 			gsap.to(this.items, {
 				x: (index) => ((e.clientX - this.gridParent.offsetWidth / 2) / this.gridParent.offsetWidth) * this.itemsRandomStart[index].x,
 				y: (index) => ((e.clientY - this.gridParent.offsetHeight / 2) / this.gridParent.offsetHeight) * this.itemsRandomStart[index].y,
-			})
-		}
+			});
+		};
 
 		if (this.options.lightbox && this.lightbox) {
-			this.items.forEach(e => {
+			this.items.forEach((e) => {
 				e.addEventListener('click', this.event.open);
 			});
 		}
 
 		this.gridParent.addEventListener('mousemove', this.event.mousemove);
-
-
 	}
 	// createLightbox() {
 	// 	const lightbox = document.createElement('div');
@@ -271,7 +280,7 @@ export default class Photogrid {
 						</clipPath>
 					</defs>
 				</svg>
-				`
+				`,
 			);
 			masks.push(e.querySelector(`#photogrid__mask-${index} path`) as SVGPathElement);
 		});
@@ -284,20 +293,20 @@ export default class Photogrid {
 	getPoints(left = this.lerpVel.x, bottom = this.lerpVel.y, right = this.lerpVel.x, top = this.lerpVel.y) {
 		return {
 			left: {
-				top: this.base + (this.base / 100 * left),
-				bottom: this.base + (this.base / 100 * left),
+				top: this.base + (this.base / 100) * left,
+				bottom: this.base + (this.base / 100) * left,
 			},
 			bottom: {
-				left: (1 - this.base) + (this.base / 100 * bottom),
-				right: (1 - this.base) + (this.base / 100 * bottom),
+				left: 1 - this.base + (this.base / 100) * bottom,
+				right: 1 - this.base + (this.base / 100) * bottom,
 			},
 			right: {
-				bottom: (1 - this.base) + (this.base / 100 * right),
-				top: (1 - this.base) + (this.base / 100 * right),
+				bottom: 1 - this.base + (this.base / 100) * right,
+				top: 1 - this.base + (this.base / 100) * right,
 			},
 			top: {
-				right: this.base + (this.base / 100 * top),
-				left: this.base + (this.base / 100 * top),
+				right: this.base + (this.base / 100) * top,
+				left: this.base + (this.base / 100) * top,
 			},
 		};
 	}
@@ -305,8 +314,8 @@ export default class Photogrid {
 		const arr = [];
 		for (let index = 0; index < this.items.length; index++) {
 			const random = {
-				x: getRandomNumber(0,150),
-				y: getRandomNumber(0,150),
+				x: getRandomNumber(0, 150),
+				y: getRandomNumber(0, 150),
 			};
 			arr.push(random);
 		}
@@ -317,7 +326,7 @@ export default class Photogrid {
 		this.base = this.options.base;
 	}
 	setPointsManually(base = this.options.base, ...sides: number[]) {
-        const [left, bottom, right, top] = sides;
+		const [left, bottom, right, top] = sides;
 		this.pointsManually = true;
 		this.base = base;
 		this.points = this.getPoints(left, bottom, right, top);
@@ -333,11 +342,11 @@ export default class Photogrid {
 		this.maskPath = this.getMaskPath();
 		if (this.activeParent) {
 			gsap.to(this.activeParent.querySelector('svg path'), {
-				attr: { d: this.maskPath},
+				attr: { d: this.maskPath },
 			});
 		} else {
 			gsap.to(this.mask, {
-				attr: { d: this.maskPath}
+				attr: { d: this.maskPath },
 			});
 		}
 	}
@@ -346,8 +355,8 @@ export default class Photogrid {
 		this.render();
 	}
 	stop() {
-		this.vel = {x: 0, y: 0};
-		this.lerpVel = {x: 0, y: 0};
+		this.vel = { x: 0, y: 0 };
+		this.lerpVel = { x: 0, y: 0 };
 		gsap.killTweensOf(this.grid);
 		gsap.killTweensOf(this.items);
 		this.paused = true;

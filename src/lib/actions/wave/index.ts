@@ -1,3 +1,3 @@
-import { wave } from "./wave";
+import { wave } from './wave';
 
 export { wave };

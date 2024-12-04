@@ -11,16 +11,16 @@ const width = 1200;
 const height = 630;
 
 const extractStyleTagWithContent = (input: string): string | null => {
-    const styleTagRegex = /<style\b[^>]*>[\s\S]*?<\/style>/gi;
-    const match = styleTagRegex.exec(input);
-    return match ? match[0] : null;
+	const styleTagRegex = /<style\b[^>]*>[\s\S]*?<\/style>/gi;
+	const match = styleTagRegex.exec(input);
+	return match ? match[0] : null;
 };
 
 export async function GET() {
-    const Inter = await fs.readFile('./src/routes/og.png/Inter_Regular.ttf');
+	const Inter = await fs.readFile('./src/routes/og.png/Inter_Regular.ttf');
 
-    const result = render(OgImage);
-    const markup = toReactNode(`${result.body}${extractStyleTagWithContent(result.head)}`);
+	const result = render(OgImage);
+	const markup = toReactNode(`${result.body}${extractStyleTagWithContent(result.head)}`);
 	const svg = await satori(markup, {
 		fonts: [
 			{
@@ -33,18 +33,18 @@ export async function GET() {
 		width: width,
 	});
 
-    const resvg = new Resvg(svg, {
-        fitTo: {
-            mode: 'width',
-            value: width
-        }
-    });
-    
-    const image = resvg.render();
-    
-    return new Response(image.asPng(), {
-        headers: {
-            'content-type': 'image/png'
-        }
-    });
+	const resvg = new Resvg(svg, {
+		fitTo: {
+			mode: 'width',
+			value: width,
+		},
+	});
+
+	const image = resvg.render();
+
+	return new Response(image.asPng(), {
+		headers: {
+			'content-type': 'image/png',
+		},
+	});
 }

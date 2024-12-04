@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
 
 export const load = (async () => {
-    return { title: 'Imprint' };
+	return { title: 'Imprint' };
 }) satisfies PageLoad;

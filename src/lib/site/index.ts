@@ -5,16 +5,4 @@ import { Navigation } from './navigation';
 import { Transition } from './transition';
 import { Footer } from './footer';
 
-export { 
-    siteConfig, 
-    Metadata, 
-    pages, 
-    mainPages, 
-    offcanvasPages, 
-    footerPages, 
-    legalsPages, 
-    socialPages,
-    Navigation,
-    Transition,
-    Footer,
-};
+export { siteConfig, Metadata, pages, mainPages, offcanvasPages, footerPages, legalsPages, socialPages, Navigation, Transition, Footer };

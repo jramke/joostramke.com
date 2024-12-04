@@ -4,22 +4,22 @@ import Photogrid from './photogrid';
 import type { PhotogridOptions } from './types';
 
 export const photogrid: Action<HTMLElement, PhotogridOptions | undefined> = (node, options: PhotogridOptions = {}) => {
-    let photogrid: Photogrid;
+	let photogrid: Photogrid;
 
-    const initializePhotogrid = () => {
-        photogrid?.kill();
-        photogrid = new Photogrid(node, options);
-    };
+	const initializePhotogrid = () => {
+		photogrid?.kill();
+		photogrid = new Photogrid(node, options);
+	};
 
-    initializePhotogrid();
+	initializePhotogrid();
 
-    return {
-        update(newOptions?: PhotogridOptions) {
-            options = { ...options, ...newOptions };
-            initializePhotogrid();
-        },
-        destroy() {         
-            photogrid?.kill();
-        }
-    };
+	return {
+		update(newOptions?: PhotogridOptions) {
+			options = { ...options, ...newOptions };
+			initializePhotogrid();
+		},
+		destroy() {
+			photogrid?.kill();
+		},
+	};
 };

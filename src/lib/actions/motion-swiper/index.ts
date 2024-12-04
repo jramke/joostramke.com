@@ -1,5 +1,3 @@
-import { motionSwiper } from "./action";
+import { motionSwiper } from './action';
 
-export { 
-    motionSwiper
-};
+export { motionSwiper };

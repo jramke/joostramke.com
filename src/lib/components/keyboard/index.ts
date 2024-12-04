@@ -1,3 +1,3 @@
-import Keyboard from "./keyboard.svelte";
+import Keyboard from './keyboard.svelte';
 
 export { Keyboard };

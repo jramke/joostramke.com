@@ -1,6 +1,6 @@
 ---
-title: "Urban Outfitters"
-tags: 
+title: 'Urban Outfitters'
+tags:
     - Design
 date: '2020-07-01'
 client: 'Urban Outfitters (concept)'

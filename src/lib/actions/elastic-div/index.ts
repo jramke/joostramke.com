@@ -1,3 +1,3 @@
-import { elasticDiv } from "./action";
+import { elasticDiv } from './action';
 
 export { elasticDiv };

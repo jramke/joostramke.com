@@ -2,7 +2,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ["./src/**/*.{html,js,svelte,ts}"],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		extend: {
 			screens: {
@@ -10,13 +10,13 @@ export default {
 			},
 			container: {
 				center: true,
-				padding: "2rem",
+				padding: '2rem',
 			},
 			transitionProperty: {
-				'height': 'height',
-				'width': 'width',
-				'size': 'width, height',
-				'spacing': 'margin, padding',
+				height: 'height',
+				width: 'width',
+				size: 'width, height',
+				spacing: 'margin, padding',
 			},
 			colors: {
 				background: 'hsl(var(--background) / <alpha-value>)',
@@ -26,10 +26,10 @@ export default {
 				secondary: 'hsl(var(--secondary) / <alpha-value>)',
 			},
 			spacing: {
-				'reading': '67ch',
-				'breakout': '92ch',
+				reading: '67ch',
+				breakout: '92ch',
 				'breakout-lg': '104ch',
-				'section': '7rem',
+				section: '7rem',
 				'section-inner': '4rem',
 			},
 			fontFamily: {
@@ -54,19 +54,19 @@ export default {
 					'100%': { opacity: 1 },
 				},
 				'fade-in-bottom': {
-					'0%': { 
+					'0%': {
 						opacity: 0,
 						transform: 'translateY(var(--amount, max(2.5rem, 100%))) scaleY(2)',
 						filter: 'blur(2px)',
 					},
-					'100%': { 
+					'100%': {
 						opacity: 1,
 						transform: 'translateY(0) scaleY(1)',
 						filter: 'blur(0)',
 					},
 				},
 				'fade-in-left': {
-					'0%': { 
+					'0%': {
 						opacity: 0,
 						transformOrigin: 'left',
 						transform: 'translateX(var(--amount, max(1.5rem, 100%))) scaleX(2)',
@@ -75,7 +75,7 @@ export default {
 					'99.9%': {
 						transformOrigin: 'left',
 					},
-					'100%': { 
+					'100%': {
 						opacity: 1,
 						transformOrigin: 'initial',
 						transform: 'translateX(0) scaleX(1)',
@@ -83,11 +83,11 @@ export default {
 					},
 				},
 				'blur-in': {
-					'0%': { 
+					'0%': {
 						opacity: 0,
 						filter: 'blur(10px)',
 					},
-					'100%': { 
+					'100%': {
 						opacity: 1,
 						filter: 'blur(0)',
 					},
@@ -156,8 +156,5 @@ export default {
 			}),
 		},
 	},
-	plugins: [
-		require('tailwindcss-spring'),
-		require('@tailwindcss/typography'),
-	],
+	plugins: [require('tailwindcss-spring'), require('@tailwindcss/typography')],
 };

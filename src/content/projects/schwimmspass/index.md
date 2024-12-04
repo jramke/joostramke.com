@@ -1,6 +1,6 @@
 ---
-title: "Schwimmspaß"
-tags: 
+title: 'Schwimmspaß'
+tags:
     - Development
     - Design
 date: '2023-05-10'

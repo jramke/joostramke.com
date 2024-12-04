@@ -17,27 +17,22 @@
 
 	let isTouch = $state(false);
 
-	const transition: Record<"top" | "right" | "bottom" | "left", Partial<FlyAndScaleParams>> = {
-        top: { y: 8, x: 0 },
-        bottom: { y: -8, x: 0 },
-        left: { y: 0, x: 8 },
-        right: { y: 0, x: -8 },
-    };
+	const transition: Record<'top' | 'right' | 'bottom' | 'left', Partial<FlyAndScaleParams>> = {
+		top: { y: 8, x: 0 },
+		bottom: { y: -8, x: 0 },
+		left: { y: 0, x: 8 },
+		right: { y: 0, x: -8 },
+	};
 
 	$effect(() => {
-		window.matchMedia("(pointer: coarse)").matches ? isTouch = true : isTouch = false;
+		window.matchMedia('(pointer: coarse)').matches ? (isTouch = true) : (isTouch = false);
 	});
-
 </script>
 
 <TooltipPrimitive.Content sideOffset={8} bind:ref {...restProps} forceMount={true} {side}>
 	{#snippet child({ props, open })}
 		{#if open && !isTouch}
-			<span 
-				class={cn("block")} 
-				{...props} 
-				transition:flyScaleBlur={{ ...transition[side] }}
-			>
+			<span class={cn('block')} {...props} transition:flyScaleBlur={{ ...transition[side] }}>
 				<span class="block border border-border px-2 py-1 text-sm rounded-md bg-background shadow-md max-w-[300px]">
 					{props?.side}
 					{@render children?.()}

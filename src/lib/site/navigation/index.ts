@@ -1,3 +1,3 @@
-import Navigation from "./navigation.svelte";
+import Navigation from './navigation.svelte';
 
 export { Navigation };

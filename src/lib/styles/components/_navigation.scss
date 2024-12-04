@@ -32,7 +32,7 @@
 //         &:before {
 //             top: 0
 //         }
-        
+
 //         &:after {
 //             top: 100%;
 //         }
@@ -40,50 +40,49 @@
 // }
 
 .offcanvas {
-    --rounded-div-width-open: 120px;
-    --rounded-div-width-open-static: 120px;
-    --rounded-div-width-close: 80px;
-    --rounded-div-width-close-static: 80px;
-    --xPercent: 100;
+	--rounded-div-width-open: 120px;
+	--rounded-div-width-open-static: 120px;
+	--rounded-div-width-close: 80px;
+	--rounded-div-width-close-static: 80px;
+	--xPercent: 100;
 
-    &__inner {
-        position: relative;
-        &:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 100px;
-            height: 100%;
-            background-color: hsl(var(--background));
-            z-index: -1;
-        }
-    }
+	&__inner {
+		position: relative;
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 100%;
+			width: 100px;
+			height: 100%;
+			background-color: hsl(var(--background));
+			z-index: -1;
+		}
+	}
 
-    &__rounded-div-open {
-        -webkit-clip-path: url('#offcanvas__mask-open');
-        clip-path: url('#offcanvas__mask-open');
-        position: absolute;
-        height: 100%;
-        left: calc((-1 * var(--rounded-div-width-open)) - var(--rounded-div-width-close) + 1px);
-        top: 0;
-        width: var(--rounded-div-width-open);
-        background-color: hsl(var(--background));
-        // background-color: red;
-    }
-    
-    &__rounded-div-close {
-        -webkit-clip-path: url('#offcanvas__mask-close');
-        clip-path: url('#offcanvas__mask-close');
-        position: absolute;
-        height: 100%;
-        left: calc(-1 * var(--rounded-div-width-close) + 1px);
-        top: 0;
-        width: var(--rounded-div-width-close);
-        background-color: hsl(var(--background));
-        // background-color: green;
-    }
+	&__rounded-div-open {
+		-webkit-clip-path: url('#offcanvas__mask-open');
+		clip-path: url('#offcanvas__mask-open');
+		position: absolute;
+		height: 100%;
+		left: calc((-1 * var(--rounded-div-width-open)) - var(--rounded-div-width-close) + 1px);
+		top: 0;
+		width: var(--rounded-div-width-open);
+		background-color: hsl(var(--background));
+		// background-color: red;
+	}
 
+	&__rounded-div-close {
+		-webkit-clip-path: url('#offcanvas__mask-close');
+		clip-path: url('#offcanvas__mask-close');
+		position: absolute;
+		height: 100%;
+		left: calc(-1 * var(--rounded-div-width-close) + 1px);
+		top: 0;
+		width: var(--rounded-div-width-close);
+		background-color: hsl(var(--background));
+		// background-color: green;
+	}
 }
 
 // @media screen and (max-height: 800px) {

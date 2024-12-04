@@ -1,7 +1,4 @@
-import { projectService } from "./project";
-import { galleryService } from "./gallery";
+import { projectService } from './project';
+import { galleryService } from './gallery';
 
-export { 
-    projectService,
-    galleryService,
-};
+export { projectService, galleryService };

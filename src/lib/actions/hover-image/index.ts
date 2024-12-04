@@ -1,3 +1,3 @@
-import { hoverImage } from "./action";
+import { hoverImage } from './action';
 
 export { hoverImage };

@@ -1,6 +1,6 @@
 ---
-title: "FC Bayern"
-tags: 
+title: 'FC Bayern'
+tags:
     - Design
 date: '2019-08-10'
 client: 'FC Bayern (concept)'

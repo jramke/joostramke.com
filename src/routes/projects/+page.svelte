@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { hoverImage } from '$lib/actions/hover-image';
 	import { cn } from '$lib/utils';
+	import { pages } from '$lib/site';
 
 	let { data } = $props();
 
@@ -26,8 +27,8 @@
 	<div class="content-grid prose">
 		<h1>Projects</h1>
 		<p>
-			Some ideas I transformed into nice digital experiences. An overview over my recent projects i did in the last years. You can find more work at
-			<a href="https://brainworxx.de" target="_blank">Brainworxx</a> and explore what we did as team so far.
+			A brief overview over my personal work and ideas i transformed into nice digital experiences during the last years.
+			You can also check out my <a href={pages.cv.slug} target={pages.cv.target}>{pages.cv.title}</a> for more information about my professional work.
 		</p>
 		<div class="not-prose mt-section-inner">
 			<ul>

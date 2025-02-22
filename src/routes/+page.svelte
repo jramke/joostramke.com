@@ -18,7 +18,7 @@
 		</h1>
 		<p class="text-balance text-secondary prose">
 			a developer & designer crafting digital experiences that seamlessly blend form and function. Currently working at
-			<a href="https://brainworxx.de" target="_blank">Brainworxx</a>.
+			<a href="https://www.weareslim.de/" target="_blank">weareslim</a>.
 		</p>
 	</div>
 </section>

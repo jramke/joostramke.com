@@ -22,8 +22,9 @@
                     Someone who works at the intersection of design and code
                 </Tooltip.Content>
             </Tooltip.Root> -->
-			passionate about building digital experiences that seamlessly blend form and function. At <a href="https://brainworxx.de" target="_blank">Brainworxx</a>, I'm
-			dedicated to pushing the boundaries of design and development to create innovative solutions that solve real-world problems.
+			passionate about building digital experiences that seamlessly blend form and function. At
+			<a href="https://weareslim.de" target="_blank">weareslim</a>, I'm dedicated to pushing the boundaries of design and development to create innovative solutions
+			that solve real-world problems.
 		</p>
 
 		<div class="flex items-center gap-9">

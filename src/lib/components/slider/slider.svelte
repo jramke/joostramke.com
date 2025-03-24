@@ -38,6 +38,7 @@
 		'overflow-hidden -mt-[var(--swiper-slide-spacing)]',
 		'[--swiper-height:15rem;] [--swiper-slide-width:15rem;] [--swiper-slide-spacing:1.5rem;]',
 		'md:[--swiper-slide-width:25rem;] md:[--swiper-height:25rem;]',
+		'min-[2200px]:[--swiper-slide-width:28rem;] min-[2200px]:[--swiper-height:28rem;]',
 		'duration-[350ms] transition-[opacity,filter,transform]',
 		!showSlider && 'opacity-0 blur-lg translate-y-[2rem]',
 	)}
